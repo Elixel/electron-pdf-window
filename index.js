@@ -20,6 +20,7 @@ function isFile (url) {
 }
 
 function getMimeOfFile (url) {
+  if (process.platform.indexOf('win32') > -1) url = url.replace('file:///', 'file://')
   const fileUrl = url.replace(/^file:\/\//i, '')
   const buffer = readChunk.sync(fileUrl, 0, 262)
   const ft = fileType(buffer)
